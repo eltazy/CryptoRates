@@ -70,10 +70,16 @@
     </string-array>
 
     <!-- Strings related to Card Activity -->
-    <string name="title_activity_card">CardActivity</string>
+    <string name="title_activity_card">Convertor</string>
 
+    <!-- Intent Identifiers -->
+    <string name="INTENT_SELECTION_RATE">com.alc.eltazy.cryptorates.INTENT_SELECTION_RATE</string>
+    <string name="INTENT_COIN_CODE">com.alc.eltazy.cryptorates.INTENT_COIN_CODE</string>
+    <string name="INTENT_CURRENCY_CODE">com.alc.eltazy.cryptorates.INTENT_CURRENCY_CODE</string>
+    <string name="INTENT_COIN_SYMBOL">com.alc.eltazy.cryptorates.INTENT_COIN_SYMBOL</string>
+    <string name="INTENT_CURRENCY_SYMBOL">com.alc.eltazy.cryptorates.INTENT_CURRENCY_SYMBOL</string>
 
     <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_header_general">Currency Preferences</string>
 
 </resources>

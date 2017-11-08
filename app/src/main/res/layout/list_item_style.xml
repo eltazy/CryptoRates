@@ -12,11 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:textColor="#78878f" />
+        android:textColor="#78878f"
+        android:minHeight="@dimen/min_list_item_height" />
     <TextView
         android:id="@+id/value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:minHeight="@dimen/min_list_item_height" />
 </LinearLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,7 @@
                 android:layout_weight="1" >
 
                 <TextView
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
                     android:paddingBottom="@dimen/fab_margin"
                     android:paddingLeft="@dimen/fab_margin"
@@ -37,19 +36,19 @@
                     android:layout_width="127dp"
                     android:id="@+id/settings_button"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:paddingBottom="@dimen/fab_margin"
                     android:paddingRight="@dimen/fab_margin"
-                    android:paddingTop="@dimen/fab_margin"
+                    android:paddingTop="8dp"
                     android:src="@drawable/ic_setting" />
             </TableRow>
 
         </android.support.design.widget.AppBarLayout>
         <TableLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#ffea82" >
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

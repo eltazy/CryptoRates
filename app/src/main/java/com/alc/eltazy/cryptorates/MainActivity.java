@@ -65,7 +65,7 @@ class RateItem {
     }
 }
 public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
-    //UI widgets
+    // UI widgets
     private ImageButton settingsButton = null;
     private Button refreshButton = null;
     private ListView list_view = null;
@@ -74,11 +74,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     private TextView pref_exchange_rate = null;
     private TextView pref_symbol = null;
     private ProgressBar refresh_progress = null;
-    //Class attributes
+    // Class attributes
     private String base_currency = null;
     private String preference_currency = null;
     private Double preference_rate = .0;
-    //HTTP Request data containers
+    // HTTP Request data containers
     private HashMap<String, Double> rates = null;
     private ArrayList<RateItem> view_rates = null;
 
@@ -119,6 +119,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         pref_exchange_rate.setText(preferenceRate().toString());
 
         //Setting Listeners
+        list_view.setOnItemClickListener(this);
         spinner_base_coin.setOnItemSelectedListener(this);
         spinner_pref_currency.setOnItemSelectedListener(this);
         refreshButton.setOnClickListener(this);
@@ -129,7 +130,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         retrievingData();
     }
 
-    //Listeners
+    // Listeners
     @Override
     public void onClick(View view){
         switch (view.getId()){
@@ -164,8 +165,18 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     public void onNothingSelected(AdapterView<?> parent){}
     @Override
     public void onItemClick(AdapterView<?> parent, View view,int pos, long id){
+        // If user pressed the on a ListView item
+        Intent card_intent = new Intent(this, CardActivity.class);
+        RateItem selected_item = view_rates.get(pos);
+        String curr = baseCurrency(), coin = selected_item.getIcon();
+        card_intent.putExtra(getString(R.string.INTENT_SELECTION_RATE), selected_item.getValue());
+        card_intent.putExtra(getString(R.string.INTENT_COIN_CODE), curr.toLowerCase());
+        card_intent.putExtra(getString(R.string.INTENT_COIN_SYMBOL), getCurrencySymbol(curr));
+        card_intent.putExtra(getString(R.string.INTENT_CURRENCY_CODE), coin.toLowerCase());
+        card_intent.putExtra(getString(R.string.INTENT_CURRENCY_SYMBOL), getCurrencySymbol(coin));
+        // Show card activity
+        startActivity(card_intent);
     }
-
     //Setters and Getters
     public String baseCurrency(){
         return base_currency;
@@ -223,7 +234,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     }
     public void refresh() {
         // Show ListView and hide progressBar
-        refresh_progress.setVisibility(View.INVISIBLE);
+        refresh_progress.setVisibility(View.GONE);
         list_view.setVisibility(View.VISIBLE);
         list_view.setAdapter(new CustomAdapter(this, view_rates));
         // Set rate and currency symbol to highlight
@@ -234,7 +245,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         if(hasInternetConnectivity()){
             // Hides ListView and shows ProgressBar as the API request is sent
             new RetrieveHTTPSRequestData().execute();
-            list_view.setVisibility(View.INVISIBLE);
+            list_view.setVisibility(View.GONE);
             refresh_progress.setVisibility(View.VISIBLE);
         }
         //Notifies on a Toast "No Internet" message
@@ -303,7 +314,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
             // Workaround as try is a java reserved word
             // Replacing it with trk for turkey
             String curr;
-            if (baseCurrency() == "TRK") curr = "TRY";
+            if (baseCurrency().equals("TRK")) curr = "TRY";
             else curr = baseCurrency();
             // Based on Wikipedia's world top 20 most traded currencies
             // with South Africa's Rand replaced by Nigeria's Naira (NGN)
