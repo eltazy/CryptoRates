@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Crypto Rates</string>
+    <string name="hello_world">Hello World motherfucker!</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_def_coin_title">Default Cryptocurrency</string>
+    <string name="pref_def_currency_title">Default Currency</string>
+
+    <string name="default_coin">BTC</string>
+    <string name="default_currency">USD</string>
+
+    <string name="pref_coin_setting">coin_setting</string>
+    <string name="pref_currency_setting">currency_setting</string>
+    <string name="pref_coin_setting_position">coin_setting_position</string>
+    <string name="pref_currency_setting_position">currency_setting_position</string>
+
+    <string-array name="pref_list_coins">
+        <item>BitCoin</item>
+        <item>Ethereum</item>
+    </string-array>
+    <string-array name="pref_list_currencies">
+        <item>American Dollar (USD)</item>
+        <item>Euro (EUR)</item>
+        <item>Japanese Yen (JPY)</item>
+        <item>Pound Sterling (GBP)</item>
+        <item>Australian Dollar (AUD)</item>
+        <item>Canadian Dollar (CAD)</item>
+        <item>Swiss Franc (CHF)</item>
+        <item>Chinese Yuan (Renminbi) (CNY)</item>
+        <item>Swedish Krona (SEK)</item>
+        <item>New Zealand Dollar (NZD)</item>
+        <item>Mexican Peso (MXN)</item>
+        <item>Singapore Dollar (SGD)</item>
+        <item>Hong Kong Dollar (HKD)</item>
+        <item>Norwegian Krone (NOK)</item>
+        <item>S. Korea Won (KRW)</item>
+        <item>Turkish Lira (TRK)</item>
+        <item>Russian Ruble (RUB)</item>
+        <item>Indian Rupee (INR)</item>
+        <item>Brazilian Real (BRL)</item>
+        <item>Nigerian Naira (NGN)</item>
+    </string-array>
+    <string-array name="pref_list_coin_values">
+        <item>BTC</item>
+        <item>ETH</item>
+    </string-array>
+    <string-array name="pref_list_currency_values">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>JPY</item>
+        <item>GBP</item>
+        <item>AUD</item>
+        <item>CAD</item>
+        <item>CHF</item>
+        <item>CNY</item>
+        <item>SEK</item>
+        <item>NZD</item>
+        <item>MXN</item>
+        <item>SGD</item>
+        <item>HKD</item>
+        <item>NOK</item>
+        <item>KRW</item>
+        <item>TRK</item>
+        <item>RUB</item>
+        <item>INR</item>
+        <item>BRL</item>
+        <item>NGN</item>
+    </string-array>
+
+    <!-- Strings related to Card Activity -->
+    <string name="title_activity_card">CardActivity</string>
+
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+</resources>

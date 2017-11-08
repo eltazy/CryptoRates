@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="@string/default_coin"
+        android:entries="@array/pref_list_coins"
+        android:entryValues="@array/pref_list_coin_values"
+        android:key="@string/pref_coin_setting"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_def_coin_title" />
+    <ListPreference
+        android:defaultValue="@string/default_currency"
+        android:entries="@array/pref_list_currencies"
+        android:entryValues="@array/pref_list_currency_values"
+        android:key="@string/pref_currency_setting"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_def_currency_title" />
+
+</PreferenceScreen>
