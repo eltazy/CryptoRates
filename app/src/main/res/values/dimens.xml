@@ -1,4 +1,13 @@
 <resources>
+    <!-- Widget Size -->
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="min_list_item_height">48dp</dimen>
+    <dimen name="min_icon_length32px">32dp</dimen>
+    <dimen name="min_icon_length48px">48dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="list_item_text_size">28sp</dimen>
+    <dimen name="highlight_big_text_size">36sp</dimen>
+    <dimen name="convertor_text_size">24sp</dimen>
 </resources>

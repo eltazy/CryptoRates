@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,41 +38,17 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 
-class RateItem {
-    //Class for Objects to handle rate data
-    private String icon = null;
-    private String symbol = null;
-    private Double value = null;
-
-    public void setIcon(String t_icon) {
-        this.icon = t_icon;
-    }
-    public String getIcon() {
-        return this.icon;
-    }
-    public void setSymbol(String t_symbol) {
-        this.symbol = t_symbol;
-    }
-    public String getSymbol() {
-        return this.symbol;
-    }
-    public void setValue(Double t_value) {
-        this.value = t_value;
-    }
-    public Double getValue() {
-        return this.value;
-    }
-}
 public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     // UI widgets
     private ImageButton settingsButton = null;
-    private Button refreshButton = null;
+    private ImageButton refreshButton = null;
     private ListView list_view = null;
     private Spinner spinner_base_coin = null;
     private Spinner spinner_pref_currency = null;
     private TextView pref_exchange_rate = null;
     private TextView pref_symbol = null;
     private ProgressBar refresh_progress = null;
+    private ImageView pref_icon = null;
     // Class attributes
     private String base_currency = null;
     private String preference_currency = null;
@@ -103,9 +78,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         settingsButton = findViewById(R.id.settings_button);
         pref_symbol = findViewById(R.id.preference_symbol);
         pref_exchange_rate = findViewById(R.id.preference_rate);
+        pref_icon = findViewById(R.id.highlight_icon);
 
         // Initializing UI with user settings if existing
         // or with default values
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.pref_list_coin_values, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_base_coin.setAdapter(adapter);
@@ -115,6 +92,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         spinner_pref_currency.setAdapter(adapter);
         spinner_pref_currency.setSelection(adapter.getPosition(currency_setting));
 
+        pref_icon.setImageResource(getResources().getIdentifier(currency_setting.toLowerCase(), "drawable", getPackageName()));
         pref_symbol.setText(getCurrencySymbol(preferenceCurrency()));
         pref_exchange_rate.setText(preferenceRate().toString());
 
@@ -155,6 +133,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
                 break;
             case R.id.preference_currency_spinner:
                 setPreferenceCurrency(parent.getSelectedItem().toString());
+                pref_icon.setImageResource(getResources().getIdentifier(preferenceCurrency().toLowerCase(), "drawable", getPackageName()));
                 pref_exchange_rate.setText(preferenceRate().toString());
                 pref_symbol.setText(getCurrencySymbol(preferenceCurrency()));
                 retrievingData();
@@ -166,16 +145,16 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     @Override
     public void onItemClick(AdapterView<?> parent, View view,int pos, long id){
         // If user pressed the on a ListView item
-        Intent card_intent = new Intent(this, CardActivity.class);
+        Intent convertor_intent = new Intent(this, CardActivity.class);
         RateItem selected_item = view_rates.get(pos);
-        String curr = baseCurrency(), coin = selected_item.getIcon();
-        card_intent.putExtra(getString(R.string.INTENT_SELECTION_RATE), selected_item.getValue());
-        card_intent.putExtra(getString(R.string.INTENT_COIN_CODE), curr.toLowerCase());
-        card_intent.putExtra(getString(R.string.INTENT_COIN_SYMBOL), getCurrencySymbol(curr));
-        card_intent.putExtra(getString(R.string.INTENT_CURRENCY_CODE), coin.toLowerCase());
-        card_intent.putExtra(getString(R.string.INTENT_CURRENCY_SYMBOL), getCurrencySymbol(coin));
+        String coin = baseCurrency(), curr = selected_item.getIcon();
+        convertor_intent.putExtra(getString(R.string.INTENT_SELECTION_RATE), selected_item.getValue());
+        convertor_intent.putExtra(getString(R.string.INTENT_COIN_CODE), coin.toLowerCase());
+        convertor_intent.putExtra(getString(R.string.INTENT_COIN_SYMBOL), getCurrencySymbol(coin));
+        convertor_intent.putExtra(getString(R.string.INTENT_CURRENCY_CODE), curr.toLowerCase());
+        convertor_intent.putExtra(getString(R.string.INTENT_CURRENCY_SYMBOL), getCurrencySymbol(curr));
         // Show card activity
-        startActivity(card_intent);
+        startActivity(convertor_intent);
     }
     //Setters and Getters
     public String baseCurrency(){
@@ -255,18 +234,42 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         // Returns true or false whether or not there is Internet connexion
         ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connectivity.getActiveNetworkInfo();
-        if (activeNetwork == null) return false;
-        else if (!activeNetwork.isConnected()) return false;
-        else return true;
+        if (activeNetwork != null) if (activeNetwork.isConnected()) return true;
+        return false;
     }
 //Sub-classes
+    private class RateItem {
+        //Class for Objects to handle rate data
+        private String icon = null;
+        private String symbol = null;
+        private Double value = null;
+
+        private void setIcon(String t_icon) {
+                this.icon = t_icon;
+            }
+        private String getIcon() {
+            return this.icon;
+        }
+        private void setSymbol(String t_symbol) {
+            this.symbol = t_symbol;
+        }
+        private String getSymbol() {
+            return this.symbol;
+        }
+        private void setValue(Double t_value) {
+            this.value = t_value;
+        }
+        private Double getValue() {
+            return this.value;
+        }
+    }
     // ListView Custom Adapter to help display
     // in list the icon, the symbol and exchange rate
     class CustomAdapter extends BaseAdapter{
         private ArrayList<RateItem> listData = null;
         private LayoutInflater layoutInflater = null;
 
-        public CustomAdapter(Context context, ArrayList<RateItem> listData) {
+        private CustomAdapter(Context context, ArrayList<RateItem> listData) {
             this.listData = listData;
             this.layoutInflater = LayoutInflater.from(context);
         }

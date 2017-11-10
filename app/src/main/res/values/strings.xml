@@ -82,4 +82,12 @@
     <!-- Example General settings -->
     <string name="pref_header_general">Currency Preferences</string>
 
+    <!-- Other Strings -->
+    <string name="to"> to </string>
+    <string name="refresh">Refresh</string>
+    <string name="equals"> equals </string>
+    <string name="switch_order"> switch </string>
+    <string name="content_descriptor">load image here</string>
+    <string name="amount">amount</string>
+
 </resources>

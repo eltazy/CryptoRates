@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- ListView Layout -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
+
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/content_descriptor"
+        android:minWidth="@dimen/min_icon_length32px" />
+
     <TextView
         android:id="@+id/symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textColor="#78878f"
-        android:minHeight="@dimen/min_list_item_height" />
+        android:gravity="bottom"
+        android:textColor="@color/color_currency_symbol"
+        android:textSize="@dimen/list_item_text_size" />
+
     <TextView
         android:id="@+id/value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:minHeight="@dimen/min_list_item_height" />
+        android:gravity="bottom"
+        android:textColor="@color/color_currency_rate"
+        android:textSize="@dimen/list_item_text_size" />
 </LinearLayout>
